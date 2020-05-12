@@ -13,9 +13,10 @@ $name = $_POST['name'];
 $price = $_POST['price'];
 $comments=$_POST['comments'];
 $concept=$_POST['concept'];
-$id=$_POST['id'];
+$idPhoto=$_POST['idPhoto'];
 
-$Sql_Query = "INSERT INTO `expense` (`uid`,`name` ,`data`, `price`, `comments`, `concept`, `id`) VALUES ('$uid','$name', '$data', '$price','$comments','$concept','$id')";
+$Sql_Query = "INSERT INTO `expense` (`uid`,`name` ,`data`, `price`, `comments`, `concept`, `idPhoto`) VALUES ('$uid','$name', '$data', '$price','$comments','$concept','$idPhoto')";
+
 
 
 if(mysqli_query($con,$Sql_Query)){

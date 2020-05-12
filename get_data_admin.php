@@ -7,16 +7,29 @@ $con = mysqli_connect($HostName,$HostUser,$HostPass,$DatabaseName);
 
  mysqli_set_charset($con,'utf8');
 
+//Recollim el nom empresa
 $i=$_GET['position'];
+$uidAdmin=$_GET['uidAdmin'];
 
 if ($i==3){
   $data_entrada=$_GET['data_entrada'];
   $data_sortida=$_GET['data_sortida'];
 }
 
+$sql = "SELECT nameCompany From users WHERE uid='$uidAdmin'";
+
+$result = mysqli_query($con,$sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $nameCompany=$row["nameCompany"];
+}
+
+
 //Recollim el nombre de usuaris
 $items = array();
-$sql = "SELECT uid From users";
+
+$sql = "SELECT uid From users WHERE nameCompany='$nameCompany'";
 
 $result2 = mysqli_query($con,$sql);
 
@@ -25,8 +38,6 @@ if ($result2->num_rows > 0) {
         $items[]=$row2["uid"];
     }
 }
-
-//print_r($items);
 
 //Per cada usuari recollim el nombre d'hores treballades
 $suma=0.0;

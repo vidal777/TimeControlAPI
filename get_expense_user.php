@@ -25,18 +25,18 @@ $valors['expense']= array();
   switch ($i) {
     case 0:  //Last Month
         $month=date('n')-1;
-        $Sql_Query = "SELECT data,price,concept,id,comments from expense WHERE MONTH(data)='$month' AND uid='$uid'";
+        $Sql_Query = "SELECT data,price,concept,idPhoto,comments from expense WHERE MONTH(data)='$month' AND uid='$uid'";
         break;
     case 1: //Last Week
         $week=date('W')-1;
-        $Sql_Query = "SELECT data,price,concept,id,comments from expense WHERE WEEK(data)='$week' AND uid='$uid' ";
+        $Sql_Query = "SELECT data,price,concept,idPhoto,comments from expense WHERE WEEK(data)='$week' AND uid='$uid' ";
         break;
     case 2:  //Last Day
         $day=date('Y-m-d', mktime(0, 0, 0, date("m"), date("d")-1, date("Y")));
-        $Sql_Query = "SELECT data,price,concept,id,comments from expense WHERE data='$day' AND uid='$uid'";
+        $Sql_Query = "SELECT data,price,concept,idPhoto,comments from expense WHERE data='$day' AND uid='$uid'";
         break;
     case 3:
-        $Sql_Query = "SELECT data,price,concept,id,comments from expense WHERE data>='$data_entrada' AND data<='$data_sortida' AND uid='$uid' ";
+        $Sql_Query = "SELECT data,price,concept,idPhoto,comments from expense WHERE data>='$data_entrada' AND data<='$data_sortida' AND uid='$uid' ";
         break;
 
   }
@@ -44,7 +44,7 @@ $valors['expense']= array();
   $result = mysqli_query($con,$Sql_Query);
   if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
-      $valors['expense'][]=array("date"=>$row["data"], "price" =>$row["price"] , "concept"=>$row["concept"], "id"=>$row["id"],"comments"=>$row['comments'] );
+      $valors['expense'][]=array("date"=>$row["data"], "price" =>$row["price"] , "concept"=>$row["concept"], "idPhoto"=>$row["idPhoto"],"comments"=>$row['comments'] );
     }
   }
 

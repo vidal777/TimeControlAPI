@@ -10,7 +10,7 @@ include 'DatabaseConfig.php' ;
  $name = $_POST['name'];
 
  $Sql_Query ="UPDATE `users` Set `name`='$name'  where `uid`='$uid'" ;
- 
+
 
  if(mysqli_query($con,$Sql_Query)){
 
